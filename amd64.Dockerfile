@@ -27,7 +27,7 @@ ENV MaxMemory=
 ENV Version="1.20.1"
 
 # Optional Timezone
-ENV TZ="America/Denver"
+ENV TZ="Asia/Tokyo"
 
 # Optional folder to ignore during backup operations
 ENV NoBackup=""
@@ -55,6 +55,8 @@ COPY *.sh /scripts/
 COPY *.yml /scripts/
 COPY server.properties /scripts/
 RUN chmod -R +x /scripts/*.sh
-
+RUN mkdir -p /minecraft/plugins
+RUN wget https://github.com/ucchyocean/LunaChat/releases/download/v3.0.16/LunaChat.jar 
+COPY *.jar /minecraft/plugins/
 # Set entrypoint to start.sh script
 ENTRYPOINT ["/bin/bash", "/scripts/start.sh"]
